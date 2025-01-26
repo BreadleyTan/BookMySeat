@@ -6,9 +6,10 @@ This repository is to create a program hosted on AWS to automate booking library
 ## Languages and libraries used
 1. Python (Backend)
     - Selenium (Automating booking seats on [NLB booking website](https://www.nlb.gov.sg/seatbooking/))
-    - Flask
+    - Flask (Used to )
 2. SQLite (Backend)
 3. HTML (Frontend)
-4. CSS (TailWind)
-5. Javascript
+4. CSS (Frontend)
+    - Tailwind
+5. Javascript (Frontend)
 
