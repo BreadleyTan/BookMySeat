@@ -4,8 +4,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import os
-import time
+from datetime import datetime, timedelta
 #If you encounter an 'unable to import' issue, just ignore it and run the code
+
+
+
+import time
+
 
 
 #Get the absolute path to the chromedriver.exe, because just defining the path to get it to work in a remote repo doesn't work cause we don't know which file will run [future proofing]
@@ -48,6 +53,33 @@ Area_Form_Button.click()
 #This selects the area you want
 Area_Form_Button_Area_Choose = driver.find_element(By.ID, "input-146") #See Library_Form_Button_Library_Choose
 driver.execute_script("arguments[0].click();", Area_Form_Button_Area_Choose) #See Library_Form_Button_Library_Choose
+
+'''
+try:
+    Date_Form_Button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "input-58"))) #See Library_Form_Button
+except TimeoutError:
+    print("Error: TimeoutError")
+    driver.quit()
+
+
+Present_Day = datetime.now()
+Tomorrow = Present_Day + timedelta(1)
+
+Date_Form_Button_Date_Choose = driver.find_element(By.NAME, str(Tomorrow.day))
+'''
+
+#I have yet to test it out as that would involve testing after 12 pm
+#I have yet to put the exception when the day is 31, not sur eif it will break or not
+
+try:
+    Duration_Form_Button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "input-70"))) #See Library_Form_Button
+except TimeoutError:
+    print("Error: TimeoutError")
+    driver.quit()
+Duration_Form_Button.click()
+
+
+#TODO: Find a way to split up the booking of time slots
 
 time.sleep(5)
 
