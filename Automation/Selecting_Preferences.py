@@ -7,12 +7,6 @@ import os
 from datetime import datetime, timedelta
 #If you encounter an 'unable to import' issue, just ignore it and run the code
 
-
-
-import time
-
-
-
 #Get the absolute path to the chromedriver.exe, because just defining the path to get it to work in a remote repo doesn't work cause we don't know which file will run [future proofing]
 script_dir = os.path.dirname(os.path.abspath(__file__))
 driver_path = os.path.join(script_dir, '../drivers/chromedriver.exe')
@@ -108,7 +102,3 @@ driver.execute_script("arguments[0].click();", Duration_Form_Button_Duration_Cho
 
 #TODO: Find a way to split up the booking of time slots
 #TODO: Find a way so that operating hours for different days are accounted for (PH, Weekends, etc)
-
-time.sleep(5)
-
-#Area_Form_Button = driver.find_element(By.ID, "input-52") #This is the button that opens the form for the Area section of the code
