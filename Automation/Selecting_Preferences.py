@@ -34,11 +34,11 @@ except TimeoutError:
 Library_Form_Button.click()
 
 #This selects the library you want
-Library_Form_Button_Library_Choose = driver.find_element(By.ID, "input-90") #Put f-string and switch out with test variable here
+Library_Form_Button_Library_Choose = driver.find_element(By.XPATH, "//*[contains(text(), 'Bedok Public Library')]") #TODO: Find a way to swap out the variable with what a use selected
 driver.execute_script("arguments[0].click();", Library_Form_Button_Library_Choose)
 #Had to use JavaScript as a div was in the way and Selenium can't run otherwise
 
-#Please note that depending on how many options you click, the id's of each form changes, making life exponentially more difficult
+#Please note that depending on how many options you click, the id's of each form choose will change
 
 #This opens the form for the Area section of the code
 try:
@@ -49,7 +49,7 @@ except TimeoutError:
 Area_Form_Button.click()
 
 #This selects the area you want
-Area_Form_Button_Area_Choose = driver.find_element(By.ID, "input-146") #See Library_Form_Button_Library_Choose
+Area_Form_Button_Area_Choose = driver.find_element(By.XPATH, """//*[contains(text(), "Teens' Fiction, Level 3")]""") #See Library_Form_Button_Library_Choose
 driver.execute_script("arguments[0].click();", Area_Form_Button_Area_Choose) #See Library_Form_Button_Library_Choose
 
 '''
@@ -71,8 +71,17 @@ Date_Form_Button_Date_Choose.click()
 #I have yet to test it out as that would involve testing after 12 pm
 #I have yet to put the exception when the day is 31, not sur eif it will break or not
 
+#This opens the form for the Time section of the code
+try:
+    Time_Form_Button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "input-64"))) #See Library_Form_Button
+except TimeoutError:
+    print("Error: TimeoutError")
+    driver.quit()
+Time_Form_Button.click()
 
-
+#This selects the time you want
+Time_Form_Button_Time_Choose = driver.find_element(By.XPATH, "//*[contains(text(), '5:00 pm')]") #AM/PM has to be lower caps
+driver.execute_script("arguments[0].click();", Time_Form_Button_Time_Choose)
 
 #This opens the form for the Duration section of the code
 try:
@@ -82,6 +91,8 @@ except TimeoutError:
     driver.quit()
 Duration_Form_Button.click()
 
+Duration_Form_Button_Duration_Choose = driver.find_element(By.XPATH, "//*[contains(text(), '4:00')]") #See Library_Form_Button_Library_Choose
+driver.execute_script("arguments[0].click();", Duration_Form_Button_Duration_Choose)
 
 #TODO: Find a way to split up the booking of time slots
 #TODO: Find a way so that operating hours for different days are accounted for (PH, Weekends, etc)
