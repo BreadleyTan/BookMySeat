@@ -38,9 +38,7 @@ Library_Form_Button_Library_Choose = driver.find_element(By.ID, "input-90") #Put
 driver.execute_script("arguments[0].click();", Library_Form_Button_Library_Choose)
 #Had to use JavaScript as a div was in the way and Selenium can't run otherwise
 
-'''
-Please note that depending on how many options you click, the id's of each form changes, making life exponentially more difficult
-'''
+#Please note that depending on how many options you click, the id's of each form changes, making life exponentially more difficult
 
 #This opens the form for the Area section of the code
 try:
@@ -55,6 +53,7 @@ Area_Form_Button_Area_Choose = driver.find_element(By.ID, "input-146") #See Libr
 driver.execute_script("arguments[0].click();", Area_Form_Button_Area_Choose) #See Library_Form_Button_Library_Choose
 
 '''
+#This opens the form for the Date section of the code
 try:
     Date_Form_Button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "input-58"))) #See Library_Form_Button
 except TimeoutError:
@@ -66,11 +65,16 @@ Present_Day = datetime.now()
 Tomorrow = Present_Day + timedelta(1)
 
 Date_Form_Button_Date_Choose = driver.find_element(By.NAME, str(Tomorrow.day))
+Date_Form_Button_Date_Choose.click()
 '''
 
 #I have yet to test it out as that would involve testing after 12 pm
 #I have yet to put the exception when the day is 31, not sur eif it will break or not
 
+
+
+
+#This opens the form for the Duration section of the code
 try:
     Duration_Form_Button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "input-70"))) #See Library_Form_Button
 except TimeoutError:
@@ -80,6 +84,7 @@ Duration_Form_Button.click()
 
 
 #TODO: Find a way to split up the booking of time slots
+#TODO: Find a way so that operating hours for different days are accounted for (PH, Weekends, etc)
 
 time.sleep(5)
 
