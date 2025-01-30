@@ -54,21 +54,24 @@ Area_Form_Button_Area_Choose = driver.find_element(By.XPATH, """//*[contains(tex
 driver.execute_script("arguments[0].scrollIntoView(true);", Area_Form_Button_Area_Choose)
 driver.execute_script("arguments[0].click();", Area_Form_Button_Area_Choose) #See Library_Form_Button_Library_Choose
 
-'''
 #This opens the form for the Date section of the code
 try:
     Date_Form_Button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "input-58"))) #See Library_Form_Button
 except TimeoutError:
     print("Error: TimeoutError")
     driver.quit()
-
+Date_Form_Button.click()
 
 Present_Day = datetime.now()
 Tomorrow = Present_Day + timedelta(1)
 
-Date_Form_Button_Date_Choose = driver.find_element(By.XPATH, "//*[contains(text(), 'Bedok Public Library')]")
-Date_Form_Button_Date_Choose.click()
-'''
+try:
+    Date_Form_Button_Date_Choose = driver.find_element(By.CLASS_NAME, 'v-btn.v-btn--active.v-btn--rounded.theme--light.primary')
+except TimeoutError:
+    print("Error: TimeoutError")
+    driver.quit()
+driver.execute_script("arguments[0].scrollIntoView(true);", Date_Form_Button_Date_Choose)
+driver.execute_script("arguments[0].click();", Date_Form_Button_Date_Choose) #See Library_Form_Button_Library_Choose
 
 #I have yet to test it out as that would involve testing after 12 pm
 #I have yet to put the exception when the day is 31, not sur eif it will break or not
