@@ -95,6 +95,7 @@ try:
     Duration_Form_Button_Duration_Choose = Duration_Form_Button_Duration_Choose_list[1]
 except IndexError:
     Duration_Form_Button_Duration_Choose = driver.find_element(By.XPATH, "//*[contains(text(), '3:15')]")
+#TODO: Add more comprehensive error catching
 print(Duration_Form_Button_Duration_Choose)
 driver.execute_script("arguments[0].scrollIntoView(true);", Duration_Form_Button_Duration_Choose)
 driver.execute_script("arguments[0].click();", Duration_Form_Button_Duration_Choose)
