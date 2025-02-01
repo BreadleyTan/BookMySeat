@@ -21,9 +21,6 @@ driver.get('https://www.nlb.gov.sg/seatbooking/')
 
 #Putting all the code in a giant function so I can call it from Login.py
 def Selecting_Preferences(driver):
-    '''
-    Start of code to automate selecting preferences for booking seats
-    '''
 
     #This opens the form for the Library section of the code
     try:
@@ -138,4 +135,3 @@ def Selecting_Preferences(driver):
     #OPTIONAL TO RETURN TO STARTING POINT
     Return_To_Start = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'New')]")))
     Return_To_Start.click()
-
