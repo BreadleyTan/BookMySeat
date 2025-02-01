@@ -97,8 +97,8 @@ def Selecting_Preferences(driver):
     Duration_Form_Button.click()
 
     try:
-        Duration_Form_Button_Duration_Choose_list = driver.find_elements(By.XPATH, "//*[contains(text(), '0:30')]")
-        Duration_Form_Button_Duration_Choose = Duration_Form_Button_Duration_Choose_list[1]
+        Duration_Form_Button_Duration_Choose_List = driver.find_elements(By.XPATH, "//*[contains(text(), '0:30')]")
+        Duration_Form_Button_Duration_Choose = Duration_Form_Button_Duration_Choose_List[1]
     except IndexError:
         Duration_Form_Button_Duration_Choose = driver.find_element(By.XPATH, "//*[contains(text(), '0:30')]")
     #TODO: Add more comprehensive error catching
