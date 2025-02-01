@@ -57,6 +57,6 @@ except TimeoutError:
     print("Error: TimeoutError")
     driver.quit()
 
-#Enter
-Submit_Button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, "btn.btn-block.btn-lg.btn-primary")))
-Submit_Button.click()
+import Selecting_Preferences
+
+Selecting_Preferences.Selecting_Preferences(driver)
