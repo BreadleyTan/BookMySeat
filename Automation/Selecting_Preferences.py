@@ -84,7 +84,7 @@ def Selecting_Preferences(driver):
     Time_Form_Button.click()
 
     #This selects the time you want
-    Time_Form_Button_Time_Choose = driver.find_element(By.XPATH, "//*[contains(text(), '4:00 pm')]") #AM/PM has to be lower caps #TODO: Put f-string
+    Time_Form_Button_Time_Choose = driver.find_element(By.XPATH, "//*[contains(text(), '6:00 pm')]") #AM/PM has to be lower caps #TODO: Put f-string
     driver.execute_script("arguments[0].scrollIntoView(true);", Time_Form_Button_Time_Choose)
     driver.execute_script("arguments[0].click();", Time_Form_Button_Time_Choose)
 
@@ -97,10 +97,10 @@ def Selecting_Preferences(driver):
     Duration_Form_Button.click()
 
     try:
-        Duration_Form_Button_Duration_Choose_list = driver.find_elements(By.XPATH, "//*[contains(text(), '3:15')]")
+        Duration_Form_Button_Duration_Choose_list = driver.find_elements(By.XPATH, "//*[contains(text(), '0:30')]")
         Duration_Form_Button_Duration_Choose = Duration_Form_Button_Duration_Choose_list[1]
     except IndexError:
-        Duration_Form_Button_Duration_Choose = driver.find_element(By.XPATH, "//*[contains(text(), '3:15')]")
+        Duration_Form_Button_Duration_Choose = driver.find_element(By.XPATH, "//*[contains(text(), '0:30')]")
     #TODO: Add more comprehensive error catching
     print(Duration_Form_Button_Duration_Choose)
     driver.execute_script("arguments[0].scrollIntoView(true);", Duration_Form_Button_Duration_Choose)
@@ -109,3 +109,33 @@ def Selecting_Preferences(driver):
 
     #TODO: Find a way to split up the booking of time slots
     #TODO: Find a way so that operating hours for different days are accounted for (PH, Weekends, etc)
+
+    #This is the final button to move to choosing seats stage
+    Check_Available_Slots = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'Check available slots')]")))
+    driver.execute_script("arguments[0].scrollIntoView(true);", Check_Available_Slots)
+    Check_Available_Slots.click() #This is the final button to move to preferences stage
+
+    #Clicking 'Book' in a new page
+    Book_Button_First = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, "v-icon.notranslate.v-icon--left.mdi.mdi-calendar-check.theme--dark")))
+    driver.execute_script("arguments[0].scrollIntoView(true);", Book_Button_First)
+    Book_Button_First.click()
+
+    #Clicking 'Seats' in a new page
+    Book_Button_Second = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, "v-icon.notranslate.mdi.mdi-seat-passenger.theme--light")))
+    driver.execute_script("arguments[0].scrollIntoView(true);", Book_Button_Second)
+    driver.execute_script("arguments[0].click();", Book_Button_Second)
+
+    #Choosing seats
+    Choosing_Seats = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'S67')]"))) #TODO:Insert f-string here make sure 'S' is in caps
+    driver.execute_script("arguments[0].scrollIntoView(true);", Choosing_Seats)
+    driver.execute_script("arguments[0].click();", Choosing_Seats)
+
+    #Confirm
+    Confirm_Seats = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'Confirm')]")))
+    driver.execute_script("arguments[0].scrollIntoView(true);", Confirm_Seats)
+    Confirm_Seats.click()
+
+    #OPTIONAL TO RETURN TO STARTING POINT
+    Return_To_Start = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'New')]")))
+    Return_To_Start.click()
+

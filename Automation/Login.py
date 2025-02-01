@@ -60,3 +60,4 @@ except TimeoutError:
 import Selecting_Preferences
 
 Selecting_Preferences.Selecting_Preferences(driver)
+#NOTE: If you wanna allow for switching out of choosing seat preferences, please remember to add mroe variables in the line above
