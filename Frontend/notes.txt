@@ -1,0 +1,9 @@
+booking seats needs:
+- library
+- area
+- date
+- time
+- duration (up to 4 hours only, increments of 30min, start at 30min)
+- username
+- password
+- seat
