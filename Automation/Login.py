@@ -30,17 +30,3 @@ except NoSuchElementException: #Means the current seat booking page is logged in
     Account_Button[0].click() #Goes to the account page, the only way to log out
     Logout_Button = driver.find_element(By.CLASS_NAME, "v-icon.notranslate.mdi.mdi-logout-variant.theme--dark")
     Logout_Button.click() 
-
-
-
-
-
-
-#Clicks onto the Account button on the bottom bar
-#NOTE: This code to click the 
-
-'''
-if driver.current_url == 'https://www.nlb.gov.sg/seatbooking/account':
-    Logout_Button = driver.find_element(By.CLASS_NAME, "v-icon.notranslate.mdi.mdi-logout-variant.theme--dark")
-    Logout_Button.click()
-'''
