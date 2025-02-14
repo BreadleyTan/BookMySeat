@@ -28,7 +28,7 @@ def Selecting_Preferences(driver):
     except TimeoutError:
         print("Error: TimeoutError")
         driver.quit()
-    Library_Form_Button.click()
+    driver.execute_script("arguments[0].click();", Library_Form_Button)
 
     #This selects the library you want
     Library_Form_Button_Library_Choose = driver.find_element(By.XPATH, "//*[contains(text(), 'Bedok Public Library')]") #TODO: Put f-string
@@ -43,7 +43,7 @@ def Selecting_Preferences(driver):
     except TimeoutError:
         print("Error: TimeoutError")
         driver.quit()
-    Area_Form_Button.click()
+    driver.execute_script("arguments[0].click();", Area_Form_Button)
 
     #This selects the area you want
     Area_Form_Button_Area_Choose = driver.find_element(By.XPATH, """//*[contains(text(), "Teens' Fiction, Level 3")]""") #TODO: Put f-string
@@ -56,10 +56,7 @@ def Selecting_Preferences(driver):
     except TimeoutError:
         print("Error: TimeoutError")
         driver.quit()
-    Date_Form_Button.click()
-
-    Present_Day = datetime.now()
-    Tomorrow = Present_Day + timedelta(1)
+    driver.execute_script("arguments[0].click();", Date_Form_Button)
 
     try:
         Date_Form_Button_Date_Choose = driver.find_element(By.CLASS_NAME, 'v-btn.v-btn--active.v-btn--rounded.theme--light.primary') #TODO: Test to find out if it works to book next available day (currently set to book first available day)
@@ -78,10 +75,10 @@ def Selecting_Preferences(driver):
     except TimeoutError:
         print("Error: TimeoutError")
         driver.quit()
-    Time_Form_Button.click()
+    driver.execute_script("arguments[0].click();", Time_Form_Button)
 
     #This selects the time you want
-    Time_Form_Button_Time_Choose = driver.find_element(By.XPATH, "//*[contains(text(), '6:00 pm')]") #AM/PM has to be lower caps #TODO: Put f-string
+    Time_Form_Button_Time_Choose = driver.find_element(By.XPATH, "//*[contains(text(), '7:30 pm')]") #AM/PM has to be lower caps #TODO: Put f-string
     driver.execute_script("arguments[0].scrollIntoView(true);", Time_Form_Button_Time_Choose)
     driver.execute_script("arguments[0].click();", Time_Form_Button_Time_Choose)
 
@@ -91,7 +88,7 @@ def Selecting_Preferences(driver):
     except TimeoutError:
         print("Error: TimeoutError")
         driver.quit()
-    Duration_Form_Button.click()
+    driver.execute_script("arguments[0].click();", Duration_Form_Button)
 
     try:
         Duration_Form_Button_Duration_Choose_List = driver.find_elements(By.XPATH, "//*[contains(text(), '0:30')]")
@@ -110,12 +107,12 @@ def Selecting_Preferences(driver):
     #This is the final button to move to choosing seats stage
     Check_Available_Slots = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'Check available slots')]")))
     driver.execute_script("arguments[0].scrollIntoView(true);", Check_Available_Slots)
-    Check_Available_Slots.click() #This is the final button to move to preferences stage
+    driver.execute_script("arguments[0].click();", Check_Available_Slots) #This is the final button to move to preferences stage
 
     #Clicking 'Book' in a new page
     Book_Button_First = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, "v-icon.notranslate.v-icon--left.mdi.mdi-calendar-check.theme--dark")))
     driver.execute_script("arguments[0].scrollIntoView(true);", Book_Button_First)
-    Book_Button_First.click()
+    driver.execute_script("arguments[0].click();", Book_Button_First)
 
     #Clicking 'Seats' in a new page
     Book_Button_Second = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, "v-icon.notranslate.mdi.mdi-seat-passenger.theme--light")))
@@ -123,15 +120,19 @@ def Selecting_Preferences(driver):
     driver.execute_script("arguments[0].click();", Book_Button_Second)
 
     #Choosing seats
-    Choosing_Seats = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'S67')]"))) #TODO:Insert f-string here make sure 'S' is in caps
+    Choosing_Seats = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'S68')]"))) #TODO:Insert f-string here make sure 'S' is in caps
     driver.execute_script("arguments[0].scrollIntoView(true);", Choosing_Seats)
     driver.execute_script("arguments[0].click();", Choosing_Seats)
 
     #Confirm
     Confirm_Seats = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'Confirm')]")))
     driver.execute_script("arguments[0].scrollIntoView(true);", Confirm_Seats)
-    Confirm_Seats.click()
+    driver.execute_script("arguments[0].click();", Confirm_Seats)
 
+    '''
     #OPTIONAL TO RETURN TO STARTING POINT
     Return_To_Start = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'New')]")))
-    Return_To_Start.click()
+    driver.execute_script("arguments[0].scrollIntoView(true);", Return_To_Start)
+    
+    TODO: Find out why this doesn't work
+    '''
